@@ -38,15 +38,15 @@ async function minutely() {
                 await sleep(.6);
             }
 
-        redrawCanvas(config.hrsLo, config.hrsHi, 2);
+        redrawCanvas(config.hrsLo, config.hrsHi);
         await sleep(60 - now.getSeconds());
     }
 }
 
 // Draw from hrsLo to hrsHi
 //  with width-only supersample antialiasing to increase text quality
-function redrawCanvas(hrsLo, hrsHi, SSAA) {
-    SSAA = 2;
+function redrawCanvas(hrsLo, hrsHi) {
+    const SSAA = Math.round(24 / (hrsHi - hrsLo));
     console.log(`call to redrawCanvas(${hrsLo}, ${hrsHi}, ${SSAA})`);
     var now = timeNow(new Date())
 
@@ -112,7 +112,7 @@ function buttonClick() {
     config.hrsHi = parseInt(document.getElementById('hrsHi').value);
     for (var key in config) { console.log(`config.${key}`, config[key]); }
     recalibrate(config.openMins, config.closedMins);
-    redrawCanvas(config.hrsLo, config.hrsHi, 2);
+    redrawCanvas(config.hrsLo, config.hrsHi);
 }
 
 </script>
@@ -135,7 +135,7 @@ function buttonClick() {
     <div>
         Minutes open: <input id="openMins" type="text" value="5"></input><br>
         Minutes closed: <input id="closedMins" type="text" value="20"></input><br>
-        Starts hours at: <input id="hrsLo" type="text" value="6"></input><br>
+        Start hours at: <input id="hrsLo" type="text" value="6"></input><br>
         End hours at: <input id="hrsHi" type="text" value="20"></input><br>
         <button id="btn" onclick="buttonClick();">Activate</button><br>
     </div>
