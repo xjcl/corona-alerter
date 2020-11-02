@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta name="description" content="Corona Alerter erinnert dich regelmäßig daran zu lüften.">
+<title>Corona Alerter</title>
+<script src="jsfx.js"></script>
+<script type="text/javascript" src="index.js"></script>
+<style type="text/css">
+    canvas { width: 90vw; height: 10vw; border: 1px solid black; }
+    /*.parent { max-width: 100vmin; max-height: 100vmin; margin: 0 auto; }*/
+</style>
+</head>
+
+<body onload="minutely();">
+<div class="parent" align="center">
+    <h1 id="title">Corona Alerter</h1>
+    Corona Alerter erinnert dich regelmäßig daran zu lüften.<br>
+    <br>
+    Ein Beep = Fenster öffnen<br>
+    Zwei Beeps = Fenster schließen<br>
+    <br>
+    Button drücken zum Aktivieren. Erster Beep kommt nach einer Minute.<br>
+    <br>
+    <div>
+        Minuten offen: <input id="openMins" type="text" value="5"></input><br>
+        Minuten geschl.: <input id="closedMins" type="text" value="20"></input><br>
+        Stunden von: <input id="hrsLo" type="text" value="6"></input><br>
+        Stunden bis: <input id="hrsHi" type="text" value="20"></input><br>
+        <button id="btn" onclick="buttonClick();">Aktivieren</button><br>
+    </div>
+
+    <img id="img_times"></img>
+    <div>
+        <canvas id="canvas_times"></canvas>
+    </div>
+</div>
+</body>
+
+</html>
